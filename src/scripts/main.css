@@ -2,17 +2,32 @@
 	all: initial;
 }
 
-:root {
+* {
 	--c1: #fdf0d1;
 	--c2: #ac7d88;
 	--c3: #85586f;
 	--c4: #643843;
 }
 
-
-.ait_suggestionButton{
+button{
     background-color: var(--c3);
     border: none;
+    
+    border-radius: .5rem;
+    padding: 1rem;
+    
+    cursor: pointer;
+    
+    
+}
+button:hover{
+    background-color: var(--c2);
+}
+
+
+.ait_suggestionButton{
+    padding: .5rem;
+    font-size: 1rem;
 
 
 }
@@ -33,6 +48,7 @@
 
 	justify-content: center;
 	align-items: center;
+    flex-direction: column;
 
 	border-radius: 1rem;
 	padding: 1rem;
@@ -48,6 +64,8 @@
     border-radius: 100%;
 
     padding: .2rem;
+    width: 2rem;
+    height: 2rem;
     border: none;
 
     cursor: pointer;

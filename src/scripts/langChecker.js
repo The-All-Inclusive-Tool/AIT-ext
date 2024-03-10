@@ -37,21 +37,22 @@ const ait = {
     createSuggestionButton: (inputElement)=>{
         ait.shadowRoot.shadowRoot.querySelectorAll('.ait_suggestionButton').forEach(ait_suggestionButton=>{
             ait.shadowRoot.shadowRoot.removeChild(ait_suggestionButton)
-
+            
         })
-
+            
         let rect = inputElement.getBoundingClientRect()
 
         let suggestionButton = document.createElement('button')
         suggestionButton.title = 'Check for Inclusive Language'
-        suggestionButton.innerText = "Button"
+        suggestionButton.innerText = "Improve"
         
         suggestionButton.style.position = 'absolute'
         suggestionButton.className = 'ait_suggestionButton'
 
 
-        const x = rect.left + rect.width + window.scrollX - 50;
-        const y = rect.top + rect.height + window.scrollY - 50;
+        const x = rect.right - ((20/100) * rect.width);
+        const y = rect.bottom - ((20 / 100) * rect.height);
+
         suggestionButton.style.left = `${x}px`;
         suggestionButton.style.top = `${y}px`;
 
@@ -82,6 +83,10 @@ const ait = {
         
         
         suggestionBox.className = "ait_suggestionBox"
+
+        suggestionBox.querySelector('.closeSuggestionBoxButton').addEventListener('click', ()=>{
+            suggestionBox.style.display = "none"
+        })
         // suggestionBox.display = "none"
         
         
@@ -92,35 +97,58 @@ const ait = {
     },
     
     getSuggestion: async (text, inputElement)=>{
+        if (text.length <2) {
+            return
+            
+        }
         let suggestionBox = ait.suggestionBox
 
+
+        let responseText = "Broooo";
         let paraTag = suggestionBox.querySelector('.improvedTextPara')
-        paraTag.innerText = text
+        let useTheSuggestionButton = suggestionBox.querySelector('.useTheSuggestionButton')
         
+        useTheSuggestionButton.addEventListener('click', ()=>{
+            if (responseText) {
+                inputElement.value = responseText
+            }
+        })
         
         let rect = inputElement.getBoundingClientRect()
         const x = rect.left + rect.width + window.scrollX - 50;
         const y = rect.top + rect.height + window.scrollY - 50;
         ait.suggestionBox.style.left = `${x}px`;
         ait.suggestionBox.style.top = `${y}px`;
-
-
-        suggestionBox.style.display = 'flex'
-
         
-        // // Access your API key (see "Set up your API key" above)
-        // const genAI = new GoogleGenerativeAI(API_KEY);
+        
+        suggestionBox.style.display = 'flex'
+        
+        
+        // Access your API key (see "Set up your API key" above)
+        const genAI = new GoogleGenerativeAI('AIzaSyAbvnixXCwQf2yNUe5k4DFhEeMBaIvaw1M');
 
-        // async function run() {
-        //     // For text-only input, use the gemini-pro model
-        //     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        async function run() {
+            // For text-only input, use the gemini-pro model
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-        //     const prompt = `Reply in the same format as the given text. Make this text inclusive for everyone, text: ${text}`; 
-        //     const result = await model.generateContent(prompt);
-        //     const response = await result.response;
-        //     const text = response.text();
-        //     console.log(text);
-        // }
+            const prompt = `
+            
+            Make this text inclusive for everyone, text: ${text}
+            
+            
+            `
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            responseText = response.text();
+            
+            console.log(responseText);
+
+
+            paraTag.innerText = responseText
+        }
+        // run();
+        
+        paraTag.innerText = text
     },
 
 
