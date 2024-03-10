@@ -104,7 +104,7 @@ const ait = {
         let suggestionBox = ait.suggestionBox
 
 
-        let responseText = "Broooo";
+        let responseText;
         let paraTag = suggestionBox.querySelector('.improvedTextPara')
         let useTheSuggestionButton = suggestionBox.querySelector('.useTheSuggestionButton')
         
@@ -146,9 +146,9 @@ const ait = {
 
             paraTag.innerText = responseText
         }
-        // run();
+        run();
+        // paraTag.innerText = text
         
-        paraTag.innerText = text
     },
 
 

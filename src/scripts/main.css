@@ -33,7 +33,7 @@ button:hover{
 }
 
 .ait_suggestionBox {
-	position: fixed;
+	position: absolute;
 
 	top: 50%;
 	left: 50%;
