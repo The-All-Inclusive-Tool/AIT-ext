@@ -1,8 +1,52 @@
 {
     "manifest_version": 3,
-    "name": "All Inclusivity Tool",
-    "version": "1.0.0",
+    "name": "All Inclusive Tool",
+    "version": "0.0.1",
+    "description": "The Brower Extension to ensure you use an inclusive language over the Internet",
+    "icons": {
+        "16": "src/assets/16x16.png",
+        "32": "src/assets/32x32.png",
+        "48": "src/assets/48x48.png",
+        "128": "src/assets/128x128.png"
+    },
     "action": {
-        "default_popup": "index.html"
-    }
+        "default_icon": {
+            "16": "src/assets/16x16.png",
+            "32": "src/assets/32x32.png"
+        },
+        "default_title": "My Web Shortcuts",
+        "default_popup": "src/popup/popup.html"
+    },
+    "background": {
+        "service_worker": "src/background/bg.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*.github.com/*"],
+            "all_frames": true,
+            "js": [
+                "src/scripts/langChecker.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "src/assets/Poppins/*",
+                "src/scripts/suggestionBox.html",
+                "src/scripts/main.css"
+            ],
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ]
+        }
+    ],
+    "options_page": "src/options/options.html",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ]
 }

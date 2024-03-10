@@ -1,0 +1,58 @@
+:host {
+	all: initial;
+}
+
+:root {
+	--c1: #fdf0d1;
+	--c2: #ac7d88;
+	--c3: #85586f;
+	--c4: #643843;
+}
+
+
+.ait_suggestionButton{
+    background-color: var(--c3);
+    border: none;
+
+
+}
+
+.ait_suggestionBox {
+	position: fixed;
+
+	top: 50%;
+	left: 50%;
+
+	width: 15rem;
+	z-index: 9999;
+
+	background-color: var(--c1);
+
+	/* display: flex; */
+	display: none;
+
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
+.closeSuggestionBoxButton {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+	background: var(--c3);
+    color: white;
+
+    border-radius: 100%;
+
+    padding: .2rem;
+    border: none;
+
+    cursor: pointer;
+}
+
+.improvedTextPara {
+	color: var(--c4);
+}

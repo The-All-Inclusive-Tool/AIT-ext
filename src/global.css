@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'Poppins';
+	src: url('assets/inter/Poppins-Black.tff') format('ttf'),
+		url('assets/inter/Poppins-Bold.tff') format('ttf');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+
